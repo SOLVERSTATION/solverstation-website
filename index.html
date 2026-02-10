@@ -7,29 +7,28 @@
 
   <style>
     :root{
-      /* Requested background: blue (0,0,255) */
-      --bg: rgb(0,0,255);
+      /* REVISED COLOR SETTINGS */
+      --bg: #ffffff;                 /* Background white */
+      --title: rgb(0,0,255);         /* Titles blue (0,0,255) */
+      --text: #000000;               /* Text black */
 
-      --panel: rgba(255,255,255,0.08);
-      --panel-strong: rgba(255,255,255,0.12);
-      --text: rgba(255,255,255,0.94);
-      --muted: rgba(255,255,255,0.74);
-      --border: rgba(255,255,255,0.18);
-      --shadow: 0 18px 50px rgba(0,0,0,0.32);
-      --radius: 18px;
-
-      --accent: rgba(100,210,255,1);
-      --accent2: rgba(167,139,250,1);
+      /* UI neutrals */
+      --muted: rgba(0,0,0,0.68);
+      --border: rgba(0,0,0,0.14);
+      --panel: rgba(0,0,0,0.035);
+      --panel-strong: rgba(0,0,0,0.06);
+      --shadow: 0 18px 50px rgba(0,0,0,0.14);
 
       --max: 1180px;
-      --h: 74px; /* header height */
+      --h: 74px;
+      --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: Roboto, Arial, ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, sans-serif; /* REVISED FONT */
       color: var(--text);
       background: var(--bg);
       overflow-x:hidden;
@@ -48,9 +47,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(0,0,255,0.58);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.88);
+      border-bottom: 1px solid var(--border);
     }
     header{
       height: var(--h);
@@ -72,9 +71,8 @@
       width: 38px;
       height: 38px;
       border-radius: 12px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.45));
-      box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+      background: linear-gradient(135deg, rgba(0,0,255,0.90), rgba(0,0,255,0.35));
+      box-shadow: 0 14px 40px rgba(0,0,0,0.12);
       position:relative;
       overflow:hidden;
     }
@@ -82,9 +80,9 @@
       content:"";
       position:absolute;
       inset:-40%;
-      background: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.22), transparent 55%);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.60), transparent 55%);
       transform: rotate(20deg);
-      opacity: 0.45;
+      opacity: 0.70;
     }
     .brandText{
       display:flex;
@@ -92,8 +90,9 @@
       line-height:1.05;
     }
     .brandText strong{
-      letter-spacing:0.5px;
+      letter-spacing:0.3px;
       font-size: 15px;
+      color: var(--title);
     }
     .brandText span{
       font-size: 12px;
@@ -116,17 +115,17 @@
       border: 1px solid transparent;
       background: transparent;
       cursor:pointer;
-      color: rgba(255,255,255,0.92);
+      color: #000;
     }
     .navBtn:hover{
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.12);
+      background: var(--panel);
+      border-color: var(--border);
     }
     .chev{
       width: 10px;
       height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.72);
-      border-bottom: 2px solid rgba(255,255,255,0.72);
+      border-right: 2px solid rgba(0,0,0,0.65);
+      border-bottom: 2px solid rgba(0,0,0,0.65);
       transform: rotate(45deg);
       margin-top:-2px;
       transition: transform 160ms ease;
@@ -137,11 +136,11 @@
       position:absolute;
       left:0;
       top: calc(100% + 10px);
-      width: 330px;
+      width: 340px;
       padding: 10px;
       border-radius: 16px;
-      background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: #fff;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       display:none;
     }
@@ -152,9 +151,9 @@
       left: 18px;
       width: 14px;
       height: 14px;
-      background: rgba(0,0,0,0.28);
-      border-left: 1px solid rgba(255,255,255,0.16);
-      border-top: 1px solid rgba(255,255,255,0.16);
+      background: #fff;
+      border-left: 1px solid var(--border);
+      border-top: 1px solid var(--border);
       transform: rotate(45deg);
     }
 
@@ -164,7 +163,7 @@
     .ddTitle{
       padding: 8px 10px 6px 10px;
       font-size: 12px;
-      color: rgba(255,255,255,0.72);
+      color: rgba(0,0,0,0.60);
       text-transform: uppercase;
       letter-spacing: 0.10em;
     }
@@ -180,24 +179,24 @@
       gap: 10px;
       padding: 10px 10px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.02);
     }
     .ddLink:hover{
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.12);
+      border-color: rgba(0,0,0,0.18);
+      background: rgba(0,0,0,0.04);
     }
     .ddIcon{
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12));
-      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(135deg, rgba(0,0,255,0.22), rgba(0,0,255,0.08));
+      border: 1px solid rgba(0,0,0,0.10);
       flex: 0 0 auto;
     }
     .ddMeta{ display:flex; flex-direction:column; gap: 2px; }
-    .ddMeta strong{ font-size: 14px; }
-    .ddMeta span{ font-size: 12px; color: rgba(255,255,255,0.74); }
+    .ddMeta strong{ font-size: 14px; color: var(--title); }
+    .ddMeta span{ font-size: 12px; color: rgba(0,0,0,0.68); }
 
     /* Right side actions */
     .actions{
@@ -208,23 +207,11 @@
     .ghost{
       padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.02);
       cursor:pointer;
     }
-    .ghost:hover{ background: rgba(255,255,255,0.14); }
-    .cta{
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      cursor:pointer;
-      background: rgba(0,0,0,0.22);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-    }
-    .cta:hover{
-      border-color: rgba(255,255,255,0.24);
-      transform: translateY(-1px);
-    }
+    .ghost:hover{ background: rgba(0,0,0,0.04); }
 
     /* Mobile */
     .burger{
@@ -232,8 +219,8 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.02);
       align-items:center;
       justify-content:center;
       cursor:pointer;
@@ -247,21 +234,23 @@
     }
     .burgerLines span{
       height: 2px;
-      background: rgba(255,255,255,0.90);
+      background: rgba(0,0,0,0.80);
       border-radius: 2px;
     }
 
     .mobilePanel{
       display:none;
       padding: 12px 0 18px 0;
-      border-top: 1px solid rgba(255,255,255,0.12);
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(10px);
     }
     .mobilePanel.open{ display:block; }
 
     .mGroup{
       margin-top: 10px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.02);
       border-radius: 16px;
       overflow:hidden;
     }
@@ -274,7 +263,7 @@
       justify-content:space-between;
     }
     .mGroup summary::-webkit-details-marker{ display:none; }
-    .mGroup summary span{ font-weight: 600; }
+    .mGroup summary span{ font-weight: 600; color: var(--title); }
     .mGroup .mLinks{
       padding: 0 10px 12px 10px;
       display:flex;
@@ -284,88 +273,94 @@
     .mLink{
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.90);
     }
-    .mLink:hover{ background: rgba(0,0,0,0.30); }
+    .mLink:hover{ background: rgba(0,0,0,0.02); }
 
-    /* ===== NEW: Slideshow Hero (before landing sections) ===== */
+    /* ===== REVISED: Slideshow full width, first row, entire page width ===== */
     .slideshowSection{
-      padding: 18px 0 14px 0;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
     .slideshowShell{
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.18);
-      box-shadow: var(--shadow);
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
       overflow:hidden;
       position:relative;
-      min-height: 420px;
-      display:grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      min-height: 520px;
     }
 
     .slides{
       position:relative;
       overflow:hidden;
-      min-height: 420px;
+      min-height: 520px;
     }
     .slide{
       position:absolute;
       inset:0;
       opacity:0;
-      transform: scale(1.02);
+      transform: scale(1.01);
       transition: opacity 420ms ease, transform 520ms ease;
       display:flex;
       flex-direction:column;
-      justify-content:flex-end;
-      padding: 28px;
+      justify-content:center;
+      padding: 0;
     }
     .slide.active{
       opacity:1;
       transform: scale(1.00);
     }
 
-    /* “Hero image” look via gradients (no external assets yet) */
+    /* Full-width hero background style (placeholder “hero image” gradients) */
     .slideBg{
       position:absolute;
       inset:0;
       z-index:0;
       background:
-        radial-gradient(900px 520px at 20% 25%, rgba(255,255,255,0.20), transparent 60%),
-        radial-gradient(800px 420px at 85% 30%, rgba(255,255,255,0.14), transparent 62%),
-        linear-gradient(135deg, rgba(0,0,0,0.10), rgba(0,0,0,0.42));
+        radial-gradient(1000px 520px at 18% 30%, rgba(0,0,255,0.18), transparent 62%),
+        radial-gradient(900px 520px at 85% 35%, rgba(0,0,255,0.10), transparent 62%),
+        linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));
     }
+
+    /* Content width aligned to site container, while background stays full-bleed */
     .slideInner{
       position:relative;
       z-index:1;
-      max-width: 64ch;
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
+      padding: 46px 0;
+      max-width: 70ch;
     }
+
     .slideKicker{
       display:inline-flex;
       gap: 8px;
       align-items:center;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.75);
       font-size: 12px;
-      color: rgba(255,255,255,0.86);
+      color: rgba(0,0,0,0.72);
     }
     .slideTitle{
-      margin: 12px 0 0 0;
-      font-size: 38px;
+      margin: 14px 0 0 0;
+      font-size: 44px;
       letter-spacing: -0.02em;
-      line-height: 1.08;
+      line-height: 1.06;
+      color: var(--title); /* Titles blue */
     }
     .slideText{
       margin: 10px 0 0 0;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.65;
-      color: rgba(255,255,255,0.78);
+      color: #000; /* Text black */
     }
     .slideCtas{
-      margin-top: 16px;
+      margin-top: 18px;
       display:flex;
       gap: 10px;
       flex-wrap:wrap;
@@ -373,14 +368,14 @@
     .slideBtn{
       padding: 10px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.85);
       cursor:pointer;
     }
-    .slideBtn:hover{ background: rgba(255,255,255,0.14); }
+    .slideBtn:hover{ background: rgba(0,0,0,0.02); }
 
     .slideBtnPrimary{
-      background: rgba(0,0,0,0.22);
+      border-color: rgba(0,0,255,0.30);
     }
 
     /* Controls */
@@ -394,24 +389,25 @@
       position:absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.80);
       display:flex;
       align-items:center;
       justify-content:center;
       cursor:pointer;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.10);
     }
-    .arrow:hover{ background: rgba(0,0,0,0.26); }
+    .arrow:hover{ background: rgba(255,255,255,0.92); }
     .arrow.prev{ left: 14px; }
     .arrow.next{ right: 14px; }
     .arrow i{
       width: 10px;
       height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.85);
-      border-bottom: 2px solid rgba(255,255,255,0.85);
+      border-right: 2px solid rgba(0,0,0,0.75);
+      border-bottom: 2px solid rgba(0,0,0,0.75);
       display:inline-block;
     }
     .arrow.prev i{ transform: rotate(135deg); }
@@ -421,48 +417,32 @@
       pointer-events:auto;
       position:absolute;
       left: 50%;
-      bottom: 14px;
+      bottom: 16px;
       transform: translateX(-50%);
       display:flex;
       gap: 8px;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.78);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.10);
     }
     .dot{
       width: 9px;
       height: 9px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(0,0,0,0.20);
+      background: rgba(0,0,0,0.10);
       cursor:pointer;
     }
     .dot.active{
-      background: rgba(255,255,255,0.88);
+      background: rgb(0,0,255);
+      border-color: rgba(0,0,255,0.55);
     }
-
-    /* Right column: quick cards */
-    .slideAside{
-      border-left: 1px solid rgba(255,255,255,0.14);
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-      background: rgba(255,255,255,0.06);
-    }
-    .asideCard{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.16);
-      padding: 14px;
-    }
-    .asideCard strong{ display:block; margin-bottom:6px; }
-    .asideCard span{ color: rgba(255,255,255,0.74); font-size: 12px; line-height: 1.55; }
 
     /* ===== Existing landing sections ===== */
     .hero{
-      padding: 22px 0 26px 0;
+      padding: 30px 0 26px 0;
     }
     .heroGrid{
       display:grid;
@@ -472,9 +452,9 @@
     }
     .card{
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.16);
-      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.02);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.10);
       padding: 22px;
     }
     .hero h1{
@@ -482,10 +462,11 @@
       font-size: 42px;
       letter-spacing: -0.02em;
       line-height: 1.05;
+      color: var(--title); /* Titles blue */
     }
     .hero p{
       margin: 12px 0 0 0;
-      color: var(--muted);
+      color: #000; /* Text black */
       font-size: 15px;
       line-height: 1.6;
       max-width: 62ch;
@@ -499,9 +480,9 @@
     .pill{
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.84);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.02);
+      color: rgba(0,0,0,0.78);
       font-size: 12px;
     }
     .heroAside{
@@ -515,11 +496,11 @@
       gap: 6px;
       padding: 16px;
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.02);
     }
-    .stat strong{ font-size: 18px; }
-    .stat span{ font-size: 12px; color: rgba(255,255,255,0.74); line-height: 1.45; }
+    .stat strong{ font-size: 18px; color: var(--title); }
+    .stat span{ font-size: 12px; color: rgba(0,0,0,0.70); line-height: 1.45; }
 
     .section{
       padding: 20px 0 44px 0;
@@ -535,10 +516,11 @@
       margin:0;
       font-size: 20px;
       letter-spacing: -0.01em;
+      color: var(--title); /* Titles blue */
     }
     .sectionHead p{
       margin:0;
-      color: var(--muted);
+      color: rgba(0,0,0,0.72);
       font-size: 13px;
       max-width: 70ch;
     }
@@ -549,8 +531,8 @@
     }
     .tile{
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.02);
       padding: 16px;
       min-height: 140px;
     }
@@ -558,29 +540,29 @@
       margin: 0 0 8px 0;
       font-size: 15px;
       letter-spacing: -0.01em;
+      color: var(--title); /* Titles blue */
     }
     .tile p{
       margin:0;
-      color: var(--muted);
+      color: #000; /* Text black */
       font-size: 13px;
       line-height: 1.6;
     }
 
     footer{
-      border-top: 1px solid rgba(255,255,255,0.18);
+      border-top: 1px solid rgba(0,0,0,0.12);
       padding: 26px 0 40px 0;
-      color: rgba(255,255,255,0.78);
+      color: rgba(0,0,0,0.70);
       font-size: 12px;
     }
 
     /* Responsive */
     @media (max-width: 980px){
-      .slideshowShell{ grid-template-columns: 1fr; }
-      .slideAside{ border-left: none; border-top: 1px solid rgba(255,255,255,0.14); }
       .heroGrid{ grid-template-columns: 1fr; }
+      .slideTitle{ font-size: 36px; }
     }
     @media (max-width: 860px){
-      nav, .actions .ghost, .actions .cta{ display:none; }
+      nav{ display:none; }
       .burger{ display:flex; }
     }
     @media (max-width: 920px){
@@ -730,10 +712,10 @@
           </div>
         </nav>
 
-        <!-- Right-side actions + mobile burger -->
+        <!-- Right-side actions -->
         <div class="actions">
+          <!-- REVISED: Removed "Get Started" button -->
           <button class="ghost" type="button">Contact</button>
-          <button class="cta" type="button">Get Started</button>
 
           <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
             <div class="burgerLines" aria-hidden="true">
@@ -782,14 +764,13 @@
 
         <div style="display:flex; gap:10px; margin-top:12px;">
           <button class="ghost" style="flex:1;" type="button">Contact</button>
-          <button class="cta" style="flex:1;" type="button">Get Started</button>
         </div>
       </div>
     </div>
   </div>
 
-  <main class="container">
-    <!-- NEW: Slideshow / Hero Image block (before current landing parts) -->
+  <main>
+    <!-- FULL-WIDTH SLIDESHOW (first row, whole width) -->
     <section class="slideshowSection" aria-label="Hero slideshow">
       <div class="slideshowShell" id="slideshow" tabindex="0" aria-roledescription="carousel" aria-label="SOLVER hero slideshow">
         <div class="slides" aria-live="polite">
@@ -813,9 +794,9 @@
           <article class="slide" data-slide aria-label="Slide 2">
             <div class="slideBg" aria-hidden="true" style="
               background:
-                radial-gradient(900px 520px at 18% 30%, rgba(255,255,255,0.18), transparent 62%),
-                radial-gradient(900px 520px at 90% 25%, rgba(255,255,255,0.12), transparent 62%),
-                linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.46));
+                radial-gradient(1000px 520px at 18% 30%, rgba(0,0,255,0.16), transparent 62%),
+                radial-gradient(900px 520px at 90% 25%, rgba(0,0,255,0.10), transparent 62%),
+                linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.07));
             "></div>
             <div class="slideInner">
               <div class="slideKicker">Lorem ipsum · Consectetur</div>
@@ -834,9 +815,9 @@
           <article class="slide" data-slide aria-label="Slide 3">
             <div class="slideBg" aria-hidden="true" style="
               background:
-                radial-gradient(820px 520px at 28% 18%, rgba(255,255,255,0.16), transparent 60%),
-                radial-gradient(900px 520px at 80% 40%, rgba(255,255,255,0.12), transparent 62%),
-                linear-gradient(135deg, rgba(0,0,0,0.12), rgba(0,0,0,0.50));
+                radial-gradient(980px 520px at 22% 22%, rgba(0,0,255,0.15), transparent 60%),
+                radial-gradient(900px 520px at 82% 40%, rgba(0,0,255,0.10), transparent 62%),
+                linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.08));
             "></div>
             <div class="slideInner">
               <div class="slideKicker">Lorem ipsum · Adipiscing</div>
@@ -863,112 +844,98 @@
             </div>
           </div>
         </div>
-
-        <!-- Right-side highlight cards (keeps the hero “balanced”) -->
-        <aside class="slideAside" aria-label="Highlights">
-          <div class="asideCard">
-            <strong>Lorem ipsum</strong>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</span>
-          </div>
-          <div class="asideCard">
-            <strong>Lorem ipsum</strong>
-            <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</span>
-          </div>
-          <div class="asideCard">
-            <strong>Lorem ipsum</strong>
-            <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</span>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <!-- Current landing page parts (unchanged structure; still Lorem ipsum) -->
-    <section class="hero">
-      <div class="heroGrid">
-        <div class="card">
-          <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
-          </p>
-          <div class="pillRow">
-            <div class="pill">Lorem ipsum</div>
-            <div class="pill">Dolor sit</div>
-            <div class="pill">Amet</div>
-            <div class="pill">Consectetur</div>
-            <div class="pill">Adipiscing</div>
+    <!-- Existing landing content (container) -->
+    <div class="container">
+      <section class="hero">
+        <div class="heroGrid">
+          <div class="card">
+            <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+              et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+            </p>
+            <div class="pillRow">
+              <div class="pill">Lorem ipsum</div>
+              <div class="pill">Dolor sit</div>
+              <div class="pill">Amet</div>
+              <div class="pill">Consectetur</div>
+              <div class="pill">Adipiscing</div>
+            </div>
+          </div>
+
+          <div class="heroAside">
+            <div class="stat">
+              <strong>Lorem ipsum</strong>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            </div>
+            <div class="stat">
+              <strong>Lorem ipsum</strong>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            </div>
+            <div class="stat">
+              <strong>Lorem ipsum</strong>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="heroAside">
-          <div class="stat">
-            <strong>Lorem ipsum</strong>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+      <section class="section">
+        <div class="sectionHead">
+          <h2>Lorem ipsum section</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="tiles">
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
           </div>
-          <div class="stat">
-            <strong>Lorem ipsum</strong>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
           </div>
-          <div class="stat">
-            <strong>Lorem ipsum</strong>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="sectionHead">
-        <h2>Lorem ipsum section</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-      </div>
-      <div class="tiles">
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
+      <section class="section">
+        <div class="sectionHead">
+          <h2>Lorem ipsum section</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
         </div>
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <div class="tiles">
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+          </div>
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+          </div>
+          <div class="tile">
+            <h3>Lorem ipsum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+          </div>
         </div>
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="sectionHead">
-        <h2>Lorem ipsum section</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-      </div>
-      <div class="tiles">
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      <footer>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>© Lorem ipsum — SOLVER Station</div>
+          <div>Lorem ipsum dolor sit amet · Lorem ipsum · Lorem ipsum</div>
         </div>
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-        <div class="tile">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-        <div>© Lorem ipsum — SOLVER Station</div>
-        <div>Lorem ipsum dolor sit amet · Lorem ipsum · Lorem ipsum</div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </main>
 
   <script>
-    // ===== Desktop dropdown behavior (click to open; click outside to close) =====
+    // Desktop dropdown behavior (click to open; click outside to close)
     const dropdownItems = [...document.querySelectorAll("[data-dd]")];
 
     function closeAll() {
@@ -997,7 +964,7 @@
       if (e.key === "Escape") closeAll();
     });
 
-    // ===== Mobile panel toggle =====
+    // Mobile panel toggle
     const burger = document.getElementById("burger");
     const mobilePanel = document.getElementById("mobilePanel");
 
@@ -1006,7 +973,7 @@
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
-    // ===== NEW: Slideshow (dynamic) =====
+    // Slideshow (dynamic)
     (function initSlideshow(){
       const root = document.getElementById("slideshow");
       const slides = [...root.querySelectorAll("[data-slide]")];
@@ -1020,11 +987,8 @@
 
       function render(i){
         index = (i + slides.length) % slides.length;
-
         slides.forEach((s, k) => s.classList.toggle("active", k === index));
         dots.forEach((d, k) => d.classList.toggle("active", k === index));
-
-        // Accessibility hint
         slides.forEach((s, k) => s.setAttribute("aria-hidden", k === index ? "false" : "true"));
       }
 
@@ -1057,16 +1021,16 @@
         if (e.key === "ArrowRight") { next(); start(); }
       });
 
-      // Pause on hover/focus (common UX for carousels)
+      // Pause on hover/focus
       root.addEventListener("mouseenter", stop);
       root.addEventListener("mouseleave", start);
       root.addEventListener("focusin", stop);
       root.addEventListener("focusout", start);
 
-      // Initial state
       render(0);
       start();
     })();
   </script>
 </body>
 </html>
+
