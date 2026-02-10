@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLVER Station — Prototype</title>
+
+  <style>
+    :root{
+      /* Requested background: blue (0,0,255) */
+      --bg: rgb(0,0,255);
+
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.94);
+      --muted: rgba(255,255,255,0.74);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 50px rgba(0,0,0,0.32);
+      --radius: 18px;
+
+      --accent: rgba(100,210,255,1);
+      --accent2: rgba(167,139,250,1);
+
+      --max: 1180px;
+      --h: 74px; /* header height */
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; color:inherit; }
+
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    /* ===== Header ===== */
+    .headerWrap{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(0,0,255,0.58);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    header{
+      height: var(--h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+    }
+
+    /* Logo */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      padding: 10px 6px;
+      border-radius: 12px;
+    }
+    .mark{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.45));
+      box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+      position:relative;
+      overflow:hidden;
+    }
+    .mark:before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.22), transparent 55%);
+      transform: rotate(20deg);
+      opacity: 0.45;
+    }
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+    .brandText strong{
+      letter-spacing:0.5px;
+      font-size: 15px;
+    }
+    .brandText span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Desktop nav */
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 2px;
+    }
+    .navItem{ position:relative; }
+    .navBtn{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor:pointer;
+      color: rgba(255,255,255,0.92);
+    }
+    .navBtn:hover{
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .chev{
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(255,255,255,0.72);
+      border-bottom: 2px solid rgba(255,255,255,0.72);
+      transform: rotate(45deg);
+      margin-top:-2px;
+      transition: transform 160ms ease;
+    }
+
+    /* Dropdown panel */
+    .dropdown{
+      position:absolute;
+      left:0;
+      top: calc(100% + 10px);
+      width: 330px;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: var(--shadow);
+      display:none;
+    }
+    .dropdown:before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left: 18px;
+      width: 14px;
+      height: 14px;
+      background: rgba(0,0,0,0.28);
+      border-left: 1px solid rgba(255,255,255,0.16);
+      border-top: 1px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg);
+    }
+
+    .navItem.open .dropdown{ display:block; }
+    .navItem.open .chev{ transform: rotate(225deg); }
+
+    .ddTitle{
+      padding: 8px 10px 6px 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.72);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+    .ddList{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      padding: 6px;
+    }
+    .ddLink{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+    }
+    .ddLink:hover{
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.12);
+    }
+    .ddIcon{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12));
+      border: 1px solid rgba(255,255,255,0.18);
+      flex: 0 0 auto;
+    }
+    .ddMeta{ display:flex; flex-direction:column; gap: 2px; }
+    .ddMeta strong{ font-size: 14px; }
+    .ddMeta span{ font-size: 12px; color: rgba(255,255,255,0.74); }
+
+    /* Right side actions */
+    .actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .ghost{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      cursor:pointer;
+    }
+    .ghost:hover{ background: rgba(255,255,255,0.14); }
+    .cta{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor:pointer;
+      background: rgba(0,0,0,0.22);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    }
+    .cta:hover{
+      border-color: rgba(255,255,255,0.24);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile */
+    .burger{
+      display:none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .burgerLines{
+      width: 18px;
+      height: 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .burgerLines span{
+      height: 2px;
+      background: rgba(255,255,255,0.90);
+      border-radius: 2px;
+    }
+
+    .mobilePanel{
+      display:none;
+      padding: 12px 0 18px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .mobilePanel.open{ display:block; }
+
+    .mGroup{
+      margin-top: 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    .mGroup summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .mGroup summary::-webkit-details-marker{ display:none; }
+    .mGroup summary span{ font-weight: 600; }
+    .mGroup .mLinks{
+      padding: 0 10px 12px 10px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .mLink{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.22);
+    }
+    .mLink:hover{ background: rgba(0,0,0,0.30); }
+
+    /* ===== NEW: Slideshow Hero (before landing sections) ===== */
+    .slideshowSection{
+      padding: 18px 0 14px 0;
+    }
+    .slideshowShell{
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.18);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 420px;
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+    }
+
+    .slides{
+      position:relative;
+      overflow:hidden;
+      min-height: 420px;
+    }
+    .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transform: scale(1.02);
+      transition: opacity 420ms ease, transform 520ms ease;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding: 28px;
+    }
+    .slide.active{
+      opacity:1;
+      transform: scale(1.00);
+    }
+
+    /* “Hero image” look via gradients (no external assets yet) */
+    .slideBg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background:
+        radial-gradient(900px 520px at 20% 25%, rgba(255,255,255,0.20), transparent 60%),
+        radial-gradient(800px 420px at 85% 30%, rgba(255,255,255,0.14), transparent 62%),
+        linear-gradient(135deg, rgba(0,0,0,0.10), rgba(0,0,0,0.42));
+    }
+    .slideInner{
+      position:relative;
+      z-index:1;
+      max-width: 64ch;
+    }
+    .slideKicker{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      font-size: 12px;
+      color: rgba(255,255,255,0.86);
+    }
+    .slideTitle{
+      margin: 12px 0 0 0;
+      font-size: 38px;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+    }
+    .slideText{
+      margin: 10px 0 0 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+    }
+    .slideCtas{
+      margin-top: 16px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .slideBtn{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      cursor:pointer;
+    }
+    .slideBtn:hover{ background: rgba(255,255,255,0.14); }
+
+    .slideBtnPrimary{
+      background: rgba(0,0,0,0.22);
+    }
+
+    /* Controls */
+    .slideControls{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+    }
+    .arrow{
+      pointer-events:auto;
+      position:absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .arrow:hover{ background: rgba(0,0,0,0.26); }
+    .arrow.prev{ left: 14px; }
+    .arrow.next{ right: 14px; }
+    .arrow i{
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(255,255,255,0.85);
+      border-bottom: 2px solid rgba(255,255,255,0.85);
+      display:inline-block;
+    }
+    .arrow.prev i{ transform: rotate(135deg); }
+    .arrow.next i{ transform: rotate(-45deg); }
+
+    .dots{
+      pointer-events:auto;
+      position:absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      display:flex;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+    }
+    .dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.10);
+      cursor:pointer;
+    }
+    .dot.active{
+      background: rgba(255,255,255,0.88);
+    }
+
+    /* Right column: quick cards */
+    .slideAside{
+      border-left: 1px solid rgba(255,255,255,0.14);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      background: rgba(255,255,255,0.06);
+    }
+    .asideCard{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.16);
+      padding: 14px;
+    }
+    .asideCard strong{ display:block; margin-bottom:6px; }
+    .asideCard span{ color: rgba(255,255,255,0.74); font-size: 12px; line-height: 1.55; }
+
+    /* ===== Existing landing sections ===== */
+    .hero{
+      padding: 22px 0 26px 0;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.16);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .hero h1{
+      margin:0;
+      font-size: 42px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .hero p{
+      margin: 12px 0 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+    .pillRow{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.84);
+      font-size: 12px;
+    }
+    .heroAside{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .stat{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.16);
+    }
+    .stat strong{ font-size: 18px; }
+    .stat span{ font-size: 12px; color: rgba(255,255,255,0.74); line-height: 1.45; }
+
+    .section{
+      padding: 20px 0 44px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 70ch;
+    }
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .tile{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.16);
+      padding: 16px;
+      min-height: 140px;
+    }
+    .tile h3{
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+    .tile p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding: 26px 0 40px 0;
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .slideshowShell{ grid-template-columns: 1fr; }
+      .slideAside{ border-left: none; border-top: 1px solid rgba(255,255,255,0.14); }
+      .heroGrid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 860px){
+      nav, .actions .ghost, .actions .cta{ display:none; }
+      .burger{ display:flex; }
+    }
+    @media (max-width: 920px){
+      .tiles{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="headerWrap">
+    <div class="container">
+      <header aria-label="Primary">
+        <!-- LOGO (Landing Page) -->
+        <a class="brand" href="#" aria-label="SOLVER (Landing Page)">
+          <div class="mark" aria-hidden="true"></div>
+          <div class="brandText">
+            <strong>SOLVER</strong>
+            <span>Station</span>
+          </div>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav aria-label="Main navigation">
+          <!-- Products -->
+          <div class="navItem" data-dd>
+            <button class="navBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              Products <i class="chev" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown" role="menu" aria-label="Products">
+              <div class="ddTitle">Products</div>
+              <div class="ddList">
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Engineering</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Research &amp; Development</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Projects</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solutions -->
+          <div class="navItem" data-dd>
+            <button class="navBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              Solutions <i class="chev" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown" role="menu" aria-label="Solutions">
+              <div class="ddTitle">Solutions</div>
+              <div class="ddList">
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Business Collaboration</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Marketing</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Sales</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Consulting</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partnerships -->
+          <div class="navItem" data-dd>
+            <button class="navBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              Partnerships <i class="chev" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown" role="menu" aria-label="Partnerships">
+              <div class="ddTitle">Partnerships</div>
+              <div class="ddList">
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>International Partnerships</strong>
+                    <span>Driving the growth through international collaboration.</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Organisation -->
+          <div class="navItem" data-dd>
+            <button class="navBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              Organisation <i class="chev" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown" role="menu" aria-label="Organisation">
+              <div class="ddTitle">Organisation</div>
+              <div class="ddList">
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>About Us</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>Resources</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="#" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>News</strong>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Right-side actions + mobile burger -->
+        <div class="actions">
+          <button class="ghost" type="button">Contact</button>
+          <button class="cta" type="button">Get Started</button>
+
+          <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+            <div class="burgerLines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      <!-- MOBILE PANEL -->
+      <div class="mobilePanel" id="mobilePanel" aria-label="Mobile navigation">
+        <details class="mGroup">
+          <summary><span>Products</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="mLinks">
+            <a class="mLink" href="#">Engineering</a>
+            <a class="mLink" href="#">Research &amp; Development</a>
+            <a class="mLink" href="#">Projects</a>
+          </div>
+        </details>
+
+        <details class="mGroup">
+          <summary><span>Solutions</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="mLinks">
+            <a class="mLink" href="#">Business Collaboration</a>
+            <a class="mLink" href="#">Marketing</a>
+            <a class="mLink" href="#">Sales</a>
+            <a class="mLink" href="#">Consulting</a>
+          </div>
+        </details>
+
+        <details class="mGroup">
+          <summary><span>Partnerships</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="mLinks">
+            <a class="mLink" href="#">International Partnerships</a>
+          </div>
+        </details>
+
+        <details class="mGroup">
+          <summary><span>Organisation</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="mLinks">
+            <a class="mLink" href="#">About Us</a>
+            <a class="mLink" href="#">Resources</a>
+            <a class="mLink" href="#">News</a>
+          </div>
+        </details>
+
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <button class="ghost" style="flex:1;" type="button">Contact</button>
+          <button class="cta" style="flex:1;" type="button">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- NEW: Slideshow / Hero Image block (before current landing parts) -->
+    <section class="slideshowSection" aria-label="Hero slideshow">
+      <div class="slideshowShell" id="slideshow" tabindex="0" aria-roledescription="carousel" aria-label="SOLVER hero slideshow">
+        <div class="slides" aria-live="polite">
+          <!-- Slide 1 -->
+          <article class="slide active" data-slide aria-label="Slide 1">
+            <div class="slideBg" aria-hidden="true"></div>
+            <div class="slideInner">
+              <div class="slideKicker">Lorem ipsum · Dolor sit</div>
+              <h2 class="slideTitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+              <p class="slideText">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <div class="slideCtas">
+                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
+                <button class="slideBtn" type="button">Dolor sit amet</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="slide" data-slide aria-label="Slide 2">
+            <div class="slideBg" aria-hidden="true" style="
+              background:
+                radial-gradient(900px 520px at 18% 30%, rgba(255,255,255,0.18), transparent 62%),
+                radial-gradient(900px 520px at 90% 25%, rgba(255,255,255,0.12), transparent 62%),
+                linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.46));
+            "></div>
+            <div class="slideInner">
+              <div class="slideKicker">Lorem ipsum · Consectetur</div>
+              <h2 class="slideTitle">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+              <p class="slideText">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <div class="slideCtas">
+                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
+                <button class="slideBtn" type="button">Consectetur</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="slide" data-slide aria-label="Slide 3">
+            <div class="slideBg" aria-hidden="true" style="
+              background:
+                radial-gradient(820px 520px at 28% 18%, rgba(255,255,255,0.16), transparent 60%),
+                radial-gradient(900px 520px at 80% 40%, rgba(255,255,255,0.12), transparent 62%),
+                linear-gradient(135deg, rgba(0,0,0,0.12), rgba(0,0,0,0.50));
+            "></div>
+            <div class="slideInner">
+              <div class="slideKicker">Lorem ipsum · Adipiscing</div>
+              <h2 class="slideTitle">Duis aute irure dolor in reprehenderit in voluptate velit esse.</h2>
+              <p class="slideText">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <div class="slideCtas">
+                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
+                <button class="slideBtn" type="button">Reprehenderit</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Controls -->
+          <div class="slideControls" aria-hidden="false">
+            <button class="arrow prev" type="button" aria-label="Previous slide" id="prevBtn"><i aria-hidden="true"></i></button>
+            <button class="arrow next" type="button" aria-label="Next slide" id="nextBtn"><i aria-hidden="true"></i></button>
+
+            <div class="dots" role="tablist" aria-label="Slide selection">
+              <button class="dot active" type="button" aria-label="Go to slide 1" data-dot="0"></button>
+              <button class="dot" type="button" aria-label="Go to slide 2" data-dot="1"></button>
+              <button class="dot" type="button" aria-label="Go to slide 3" data-dot="2"></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right-side highlight cards (keeps the hero “balanced”) -->
+        <aside class="slideAside" aria-label="Highlights">
+          <div class="asideCard">
+            <strong>Lorem ipsum</strong>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</span>
+          </div>
+          <div class="asideCard">
+            <strong>Lorem ipsum</strong>
+            <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</span>
+          </div>
+          <div class="asideCard">
+            <strong>Lorem ipsum</strong>
+            <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Current landing page parts (unchanged structure; still Lorem ipsum) -->
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="card">
+          <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+          </p>
+          <div class="pillRow">
+            <div class="pill">Lorem ipsum</div>
+            <div class="pill">Dolor sit</div>
+            <div class="pill">Amet</div>
+            <div class="pill">Consectetur</div>
+            <div class="pill">Adipiscing</div>
+          </div>
+        </div>
+
+        <div class="heroAside">
+          <div class="stat">
+            <strong>Lorem ipsum</strong>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </div>
+          <div class="stat">
+            <strong>Lorem ipsum</strong>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </div>
+          <div class="stat">
+            <strong>Lorem ipsum</strong>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead">
+        <h2>Lorem ipsum section</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead">
+        <h2>Lorem ipsum section</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="tile">
+          <h3>Lorem ipsum</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <div>© Lorem ipsum — SOLVER Station</div>
+        <div>Lorem ipsum dolor sit amet · Lorem ipsum · Lorem ipsum</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ===== Desktop dropdown behavior (click to open; click outside to close) =====
+    const dropdownItems = [...document.querySelectorAll("[data-dd]")];
+
+    function closeAll() {
+      dropdownItems.forEach(item => {
+        item.classList.remove("open");
+        const btn = item.querySelector(".navBtn");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    dropdownItems.forEach(item => {
+      const btn = item.querySelector(".navBtn");
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = item.classList.contains("open");
+        closeAll();
+        if (!isOpen) {
+          item.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    document.addEventListener("click", closeAll);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll();
+    });
+
+    // ===== Mobile panel toggle =====
+    const burger = document.getElementById("burger");
+    const mobilePanel = document.getElementById("mobilePanel");
+
+    burger.addEventListener("click", () => {
+      const open = mobilePanel.classList.toggle("open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // ===== NEW: Slideshow (dynamic) =====
+    (function initSlideshow(){
+      const root = document.getElementById("slideshow");
+      const slides = [...root.querySelectorAll("[data-slide]")];
+      const dots = [...root.querySelectorAll("[data-dot]")];
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      let index = 0;
+      let timer = null;
+      const intervalMs = 5500;
+
+      function render(i){
+        index = (i + slides.length) % slides.length;
+
+        slides.forEach((s, k) => s.classList.toggle("active", k === index));
+        dots.forEach((d, k) => d.classList.toggle("active", k === index));
+
+        // Accessibility hint
+        slides.forEach((s, k) => s.setAttribute("aria-hidden", k === index ? "false" : "true"));
+      }
+
+      function next(){ render(index + 1); }
+      function prev(){ render(index - 1); }
+
+      function start(){
+        stop();
+        timer = window.setInterval(next, intervalMs);
+      }
+      function stop(){
+        if (timer) window.clearInterval(timer);
+        timer = null;
+      }
+
+      prevBtn.addEventListener("click", () => { prev(); start(); });
+      nextBtn.addEventListener("click", () => { next(); start(); });
+
+      dots.forEach(d => {
+        d.addEventListener("click", () => {
+          const target = Number(d.getAttribute("data-dot"));
+          render(target);
+          start();
+        });
+      });
+
+      // Keyboard support: left/right arrows
+      root.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") { prev(); start(); }
+        if (e.key === "ArrowRight") { next(); start(); }
+      });
+
+      // Pause on hover/focus (common UX for carousels)
+      root.addEventListener("mouseenter", stop);
+      root.addEventListener("mouseleave", start);
+      root.addEventListener("focusin", stop);
+      root.addEventListener("focusout", start);
+
+      // Initial state
+      render(0);
+      start();
+    })();
+  </script>
+</body>
+</html>
