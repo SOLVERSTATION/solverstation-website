@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOLVER Station — Prototype</title>
-
+  <title>SOLVERSTATION — Charge your business with solutions</title>
+  <meta name="description" content="SOLVERSTATION develops engineering and digital solutions: engineering consulting, R&D, international projects, websites, digital operations, marketing, sales, and data analytics." />
   <style>
     :root{
-      /* REVISED COLOR SETTINGS */
+      /* Color settings */
       --bg: #ffffff;                 /* Background white */
       --title: rgb(0,0,255);         /* Titles blue (0,0,255) */
       --text: #000000;               /* Text black */
@@ -28,7 +28,7 @@
     html, body{ height:100%; }
     body{
       margin:0;
-      font-family: Roboto, Arial, ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, sans-serif; /* REVISED FONT */
+      font-family: Roboto, Arial, ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, sans-serif;
       color: var(--text);
       background: var(--bg);
       overflow-x:hidden;
@@ -136,7 +136,7 @@
       position:absolute;
       left:0;
       top: calc(100% + 10px);
-      width: 340px;
+      width: 360px;
       padding: 10px;
       border-radius: 16px;
       background: #fff;
@@ -278,7 +278,7 @@
     }
     .mLink:hover{ background: rgba(0,0,0,0.02); }
 
-    /* ===== REVISED: Slideshow full width, first row, entire page width ===== */
+    /* ===== Full-width slideshow (first row, whole width) ===== */
     .slideshowSection{
       width: 100%;
       margin: 0;
@@ -314,7 +314,7 @@
       transform: scale(1.00);
     }
 
-    /* Full-width hero background style (placeholder “hero image” gradients) */
+    /* “Hero image” look via gradients (no external assets yet) */
     .slideBg{
       position:absolute;
       inset:0;
@@ -332,7 +332,7 @@
       width: min(var(--max), calc(100% - 40px));
       margin-inline:auto;
       padding: 46px 0;
-      max-width: 70ch;
+      max-width: 76ch;
     }
 
     .slideKicker{
@@ -351,13 +351,13 @@
       font-size: 44px;
       letter-spacing: -0.02em;
       line-height: 1.06;
-      color: var(--title); /* Titles blue */
+      color: var(--title);
     }
     .slideText{
       margin: 10px 0 0 0;
       font-size: 16px;
       line-height: 1.65;
-      color: #000; /* Text black */
+      color: #000;
     }
     .slideCtas{
       margin-top: 18px;
@@ -440,7 +440,7 @@
       border-color: rgba(0,0,255,0.55);
     }
 
-    /* ===== Existing landing sections ===== */
+    /* ===== Sections ===== */
     .hero{
       padding: 30px 0 26px 0;
     }
@@ -462,14 +462,14 @@
       font-size: 42px;
       letter-spacing: -0.02em;
       line-height: 1.05;
-      color: var(--title); /* Titles blue */
+      color: var(--title);
     }
     .hero p{
       margin: 12px 0 0 0;
-      color: #000; /* Text black */
+      color: #000;
       font-size: 15px;
       line-height: 1.6;
-      max-width: 62ch;
+      max-width: 70ch;
     }
     .pillRow{
       margin-top: 18px;
@@ -516,13 +516,13 @@
       margin:0;
       font-size: 20px;
       letter-spacing: -0.01em;
-      color: var(--title); /* Titles blue */
+      color: var(--title);
     }
     .sectionHead p{
       margin:0;
       color: rgba(0,0,0,0.72);
       font-size: 13px;
-      max-width: 70ch;
+      max-width: 80ch;
     }
     .tiles{
       display:grid;
@@ -534,19 +534,36 @@
       border: 1px solid rgba(0,0,0,0.12);
       background: rgba(0,0,0,0.02);
       padding: 16px;
-      min-height: 140px;
+      min-height: 170px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 10px;
     }
     .tile h3{
       margin: 0 0 8px 0;
       font-size: 15px;
       letter-spacing: -0.01em;
-      color: var(--title); /* Titles blue */
+      color: var(--title);
     }
     .tile p{
       margin:0;
-      color: #000; /* Text black */
+      color: #000;
       font-size: 13px;
       line-height: 1.6;
+    }
+    .tile a{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(0,0,255,0.92);
+      border-bottom: 1px solid rgba(0,0,255,0.22);
+      width: fit-content;
+      padding-bottom: 2px;
+    }
+    .tile a:hover{
+      border-bottom-color: rgba(0,0,255,0.55);
     }
 
     footer{
@@ -556,7 +573,6 @@
       font-size: 12px;
     }
 
-    /* Responsive */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .slideTitle{ font-size: 36px; }
@@ -576,11 +592,11 @@
     <div class="container">
       <header aria-label="Primary">
         <!-- LOGO (Landing Page) -->
-        <a class="brand" href="#" aria-label="SOLVER (Landing Page)">
+        <a class="brand" href="/" aria-label="SOLVERSTATION (Landing Page)">
           <div class="mark" aria-hidden="true"></div>
           <div class="brandText">
-            <strong>SOLVER</strong>
-            <span>Station</span>
+            <strong>SOLVERSTATION</strong>
+            <span>Engineering & Digital Solutions</span>
           </div>
         </a>
 
@@ -594,25 +610,25 @@
             <div class="dropdown" role="menu" aria-label="Products">
               <div class="ddTitle">Products</div>
               <div class="ddList">
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/products/engineering.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Engineering</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Techno-economic analysis and engineering consulting.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/products/research-development.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Research &amp; Development</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Applied research across engineering, AI, and operations.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/products/projects.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Projects</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Concept, write, submit, and coordinate international projects.</span>
                   </div>
                 </a>
               </div>
@@ -627,32 +643,32 @@
             <div class="dropdown" role="menu" aria-label="Solutions">
               <div class="ddTitle">Solutions</div>
               <div class="ddList">
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/solutions/business-collaboration.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Business Collaboration</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Align teams, processes, and partners to deliver results.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/solutions/marketing.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Marketing</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Increase visibility and credibility for sustainable growth.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/solutions/sales.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Sales</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Support entry into novel markets with clear positioning.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/solutions/consulting.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
-                    <strong>Consulting</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <strong>Data Analytics &amp; Consulting</strong>
+                    <span>Turn data into decisions, models, and actionable answers.</span>
                   </div>
                 </a>
               </div>
@@ -667,11 +683,18 @@
             <div class="dropdown" role="menu" aria-label="Partnerships">
               <div class="ddTitle">Partnerships</div>
               <div class="ddList">
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/partnerships/national-partnerships.html" role="menuitem">
+                  <div class="ddIcon" aria-hidden="true"></div>
+                  <div class="ddMeta">
+                    <strong>National Partnerships</strong>
+                    <span>Local collaboration with industry, academia, and SMEs.</span>
+                  </div>
+                </a>
+                <a class="ddLink" href="/partnerships/international-partnerships.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>International Partnerships</strong>
-                    <span>Driving the growth through international collaboration.</span>
+                    <span>Driving growth through international collaboration.</span>
                   </div>
                 </a>
               </div>
@@ -686,25 +709,25 @@
             <div class="dropdown" role="menu" aria-label="Organisation">
               <div class="ddTitle">Organisation</div>
               <div class="ddList">
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/organisation/about-us.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>About Us</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Based in Zagreb, Croatia (European Union).</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/organisation/resources.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>Resources</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Library of reports, guides, and reference materials.</span>
                   </div>
                 </a>
-                <a class="ddLink" href="#" role="menuitem">
+                <a class="ddLink" href="/organisation/news.html" role="menuitem">
                   <div class="ddIcon" aria-hidden="true"></div>
                   <div class="ddMeta">
                     <strong>News</strong>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span>Updates, events, publications, and announcements.</span>
                   </div>
                 </a>
               </div>
@@ -714,9 +737,7 @@
 
         <!-- Right-side actions -->
         <div class="actions">
-          <!-- REVISED: Removed "Get Started" button -->
-          <button class="ghost" type="button">Contact</button>
-
+          <a class="ghost" href="/contact.html">Contact</a>
           <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
             <div class="burgerLines" aria-hidden="true">
               <span></span><span></span><span></span>
@@ -730,40 +751,41 @@
         <details class="mGroup">
           <summary><span>Products</span><i class="chev" aria-hidden="true"></i></summary>
           <div class="mLinks">
-            <a class="mLink" href="#">Engineering</a>
-            <a class="mLink" href="#">Research &amp; Development</a>
-            <a class="mLink" href="#">Projects</a>
+            <a class="mLink" href="/products/engineering.html">Engineering</a>
+            <a class="mLink" href="/products/research-development.html">Research &amp; Development</a>
+            <a class="mLink" href="/products/projects.html">Projects</a>
           </div>
         </details>
 
         <details class="mGroup">
           <summary><span>Solutions</span><i class="chev" aria-hidden="true"></i></summary>
           <div class="mLinks">
-            <a class="mLink" href="#">Business Collaboration</a>
-            <a class="mLink" href="#">Marketing</a>
-            <a class="mLink" href="#">Sales</a>
-            <a class="mLink" href="#">Consulting</a>
+            <a class="mLink" href="/solutions/business-collaboration.html">Business Collaboration</a>
+            <a class="mLink" href="/solutions/marketing.html">Marketing</a>
+            <a class="mLink" href="/solutions/sales.html">Sales</a>
+            <a class="mLink" href="/solutions/consulting.html">Data Analytics &amp; Consulting</a>
           </div>
         </details>
 
         <details class="mGroup">
           <summary><span>Partnerships</span><i class="chev" aria-hidden="true"></i></summary>
           <div class="mLinks">
-            <a class="mLink" href="#">International Partnerships</a>
+            <a class="mLink" href="/partnerships/national-partnerships.html">National Partnerships</a>
+            <a class="mLink" href="/partnerships/international-partnerships.html">International Partnerships</a>
           </div>
         </details>
 
         <details class="mGroup">
           <summary><span>Organisation</span><i class="chev" aria-hidden="true"></i></summary>
           <div class="mLinks">
-            <a class="mLink" href="#">About Us</a>
-            <a class="mLink" href="#">Resources</a>
-            <a class="mLink" href="#">News</a>
+            <a class="mLink" href="/organisation/about-us.html">About Us</a>
+            <a class="mLink" href="/organisation/resources.html">Resources</a>
+            <a class="mLink" href="/organisation/news.html">News</a>
           </div>
         </details>
 
         <div style="display:flex; gap:10px; margin-top:12px;">
-          <button class="ghost" style="flex:1;" type="button">Contact</button>
+          <a class="ghost" style="flex:1; text-align:center;" href="/contact.html">Contact</a>
         </div>
       </div>
     </div>
@@ -772,20 +794,21 @@
   <main>
     <!-- FULL-WIDTH SLIDESHOW (first row, whole width) -->
     <section class="slideshowSection" aria-label="Hero slideshow">
-      <div class="slideshowShell" id="slideshow" tabindex="0" aria-roledescription="carousel" aria-label="SOLVER hero slideshow">
+      <div class="slideshowShell" id="slideshow" tabindex="0" aria-roledescription="carousel" aria-label="SOLVERSTATION hero slideshow">
         <div class="slides" aria-live="polite">
           <!-- Slide 1 -->
           <article class="slide active" data-slide aria-label="Slide 1">
             <div class="slideBg" aria-hidden="true"></div>
             <div class="slideInner">
-              <div class="slideKicker">Lorem ipsum · Dolor sit</div>
-              <h2 class="slideTitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+              <div class="slideKicker">SOLVERSTATION · Engineering & Digital Solutions</div>
+              <h2 class="slideTitle">Charge your business with solutions.</h2>
               <p class="slideText">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Solver Station develops engineering and digital solutions that make organisations more resilient,
+                more efficient, and more visible—locally and internationally.
               </p>
               <div class="slideCtas">
-                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
-                <button class="slideBtn" type="button">Dolor sit amet</button>
+                <a class="slideBtn slideBtnPrimary" href="/products/engineering.html">Explore Engineering</a>
+                <a class="slideBtn" href="/solutions/business-collaboration.html">View Solutions</a>
               </div>
             </div>
           </article>
@@ -799,14 +822,15 @@
                 linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.07));
             "></div>
             <div class="slideInner">
-              <div class="slideKicker">Lorem ipsum · Consectetur</div>
-              <h2 class="slideTitle">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+              <div class="slideKicker">Research &amp; Development · Evidence-led delivery</div>
+              <h2 class="slideTitle">From research to implementation—without losing clarity.</h2>
               <p class="slideText">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                We conduct applied research in maintenance, asset management, mechanical engineering,
+                naval architecture, transport electrification, and artificial intelligence—then translate results into practice.
               </p>
               <div class="slideCtas">
-                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
-                <button class="slideBtn" type="button">Consectetur</button>
+                <a class="slideBtn slideBtnPrimary" href="/products/research-development.html">R&amp;D Capabilities</a>
+                <a class="slideBtn" href="/solutions/consulting.html">Data &amp; Consulting</a>
               </div>
             </div>
           </article>
@@ -820,14 +844,15 @@
                 linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.08));
             "></div>
             <div class="slideInner">
-              <div class="slideKicker">Lorem ipsum · Adipiscing</div>
-              <h2 class="slideTitle">Duis aute irure dolor in reprehenderit in voluptate velit esse.</h2>
+              <div class="slideKicker">International Projects · Multi-disciplinary teams</div>
+              <h2 class="slideTitle">Turn ambitious ideas into funded projects.</h2>
               <p class="slideText">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                We support organisations in conceptualising, writing, submitting, and coordinating international projects—
+                gathering professionals across engineering, economics, and marketing to strengthen proposals and execution.
               </p>
               <div class="slideCtas">
-                <button class="slideBtn slideBtnPrimary" type="button">Lorem ipsum</button>
-                <button class="slideBtn" type="button">Reprehenderit</button>
+                <a class="slideBtn slideBtnPrimary" href="/products/projects.html">Project Support</a>
+                <a class="slideBtn" href="/partnerships/international-partnerships.html">Partnerships</a>
               </div>
             </div>
           </article>
@@ -847,94 +872,222 @@
       </div>
     </section>
 
-    <!-- Existing landing content (container) -->
+    <!-- Landing content -->
     <div class="container">
-      <section class="hero">
+      <section class="hero" aria-label="Introduction">
         <div class="heroGrid">
           <div class="card">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
+            <h1>SOLVERSTATION</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+              Solver Station is an organisation that develops engineering and digital solutions.
+              We combine an engineering mindset with practical delivery to help organisations plan confidently,
+              execute efficiently, and grow sustainably.
             </p>
-            <div class="pillRow">
-              <div class="pill">Lorem ipsum</div>
-              <div class="pill">Dolor sit</div>
-              <div class="pill">Amet</div>
-              <div class="pill">Consectetur</div>
-              <div class="pill">Adipiscing</div>
+            <div class="pillRow" aria-label="Focus areas">
+              <div class="pill">Engineering &amp; Techno-economics</div>
+              <div class="pill">Research &amp; Development</div>
+              <div class="pill">International Projects</div>
+              <div class="pill">Digital Solutions</div>
+              <div class="pill">Marketing &amp; Sales Support</div>
+              <div class="pill">Data Analytics</div>
             </div>
           </div>
 
-          <div class="heroAside">
+          <div class="heroAside" aria-label="Highlights">
             <div class="stat">
-              <strong>Lorem ipsum</strong>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+              <strong>Engineering credibility</strong>
+              <span>Mechanical Engineering and Naval Architecture background enables rigorous analysis and grounded recommendations.</span>
             </div>
             <div class="stat">
-              <strong>Lorem ipsum</strong>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+              <strong>Evidence-led R&amp;D</strong>
+              <span>Applied research that stays connected to real operations, budgets, and measurable impact.</span>
             </div>
             <div class="stat">
-              <strong>Lorem ipsum</strong>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+              <strong>Execution support</strong>
+              <span>From project concepts and proposals to coordination and stakeholder alignment.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- Products -->
+      <section class="section" aria-label="Products">
         <div class="sectionHead">
-          <h2>Lorem ipsum section</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+          <h2>Products</h2>
+          <p>Engineering expertise, applied research, and project delivery—built to support decision-making and implementation.</p>
         </div>
         <div class="tiles">
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Engineering</h3>
+              <p>
+                Techno-economic analysis and consulting grounded in mechanical engineering and naval architecture.
+                We help you evaluate options, quantify trade-offs, and build decisions you can defend.
+              </p>
+            </div>
+            <a href="/products/engineering.html" aria-label="Open Engineering page">Open Engineering →</a>
           </div>
+
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Research &amp; Development</h3>
+              <p>
+                Extensive research across maintenance, asset management, mechanical engineering, naval architecture,
+                transport electrification, and artificial intelligence—focused on practical outcomes.
+              </p>
+            </div>
+            <a href="/products/research-development.html" aria-label="Open Research and Development page">Open R&amp;D →</a>
           </div>
+
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Projects</h3>
+              <p>
+                Support for conceptualising, writing, submitting, and coordinating international projects.
+                We assemble multi-disciplinary professionals to strengthen both proposals and execution.
+              </p>
+            </div>
+            <a href="/products/projects.html" aria-label="Open Projects page">Open Projects →</a>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- Solutions -->
+      <section class="section" aria-label="Solutions">
         <div class="sectionHead">
-          <h2>Lorem ipsum section</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+          <h2>Solutions</h2>
+          <p>Digital presence, operational transition, market growth, and data-driven answers—delivered with clarity and structure.</p>
         </div>
         <div class="tiles">
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Website Development</h3>
+              <p>
+                Become visible with a modern website designed for clarity, credibility, and conversion.
+                From structure to deployment, we build a professional presence that represents your value.
+              </p>
+            </div>
+            <a href="/solutions/marketing.html" aria-label="Open Marketing page">Related: Marketing →</a>
           </div>
+
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Digital Solutions</h3>
+              <p>
+                Transition your operations online using Microsoft 365, Google Workspace, and other tools.
+                Establish secure collaboration, document control, and repeatable workflows.
+              </p>
+            </div>
+            <a href="/solutions/business-collaboration.html" aria-label="Open Business Collaboration page">Open Business Collaboration →</a>
           </div>
+
           <div class="tile">
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <div>
+              <h3>Marketing &amp; Sales Enablement</h3>
+              <p>
+                Increase brand visibility and support entry into novel markets.
+                We help refine positioning, messaging, and sales materials to accelerate growth.
+              </p>
+            </div>
+            <a href="/solutions/sales.html" aria-label="Open Sales page">Open Sales →</a>
+          </div>
+        </div>
+
+        <div class="tiles" style="margin-top:14px;">
+          <div class="tile">
+            <div>
+              <h3>Business Collaboration</h3>
+              <p>
+                Align stakeholders and partners to deliver outcomes.
+                We structure collaboration around goals, responsibilities, timelines, and transparent communication.
+              </p>
+            </div>
+            <a href="/solutions/business-collaboration.html" aria-label="Open Business Collaboration page">Open Business Collaboration →</a>
+          </div>
+
+          <div class="tile">
+            <div>
+              <h3>Marketing</h3>
+              <p>
+                Increase visibility of your brand to achieve business growth.
+                A pragmatic approach: credibility, consistency, and measurable reach.
+              </p>
+            </div>
+            <a href="/solutions/marketing.html" aria-label="Open Marketing page">Open Marketing →</a>
+          </div>
+
+          <div class="tile">
+            <div>
+              <h3>Data Analytics &amp; Consulting</h3>
+              <p>
+                Provide data to a trusted organisation and get clear answers.
+                We transform data into dashboards, insights, and decisions you can act on.
+              </p>
+            </div>
+            <a href="/solutions/consulting.html" aria-label="Open Data Analytics and Consulting page">Open Data &amp; Consulting →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Organisation -->
+      <section class="section" aria-label="Organisation">
+        <div class="sectionHead">
+          <h2>Organisation</h2>
+          <p>Based in Zagreb, Croatia (European Union), SOLVERSTATION collaborates nationally and internationally to deliver high-quality solutions.</p>
+        </div>
+        <div class="tiles">
+          <div class="tile">
+            <div>
+              <h3>About Us</h3>
+              <p>
+                We combine engineering discipline with digital delivery. Our focus is to create practical solutions
+                that support long-term performance and credible growth.
+              </p>
+            </div>
+            <a href="/organisation/about-us.html" aria-label="Open About Us page">Open About Us →</a>
+          </div>
+
+          <div class="tile">
+            <div>
+              <h3>Resources</h3>
+              <p>
+                A curated library of reports, reference materials, and practical documents supporting engineering,
+                operations, and digital transformation.
+              </p>
+            </div>
+            <a href="/organisation/resources.html" aria-label="Open Resources page">Open Resources →</a>
+          </div>
+
+          <div class="tile">
+            <div>
+              <h3>News</h3>
+              <p>
+                Announcements, events, publications, and milestones.
+                Follow our latest work, collaborations, and upcoming initiatives.
+              </p>
+            </div>
+            <a href="/organisation/news.html" aria-label="Open News page">Open News →</a>
           </div>
         </div>
       </section>
 
       <footer>
         <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-          <div>© Lorem ipsum — SOLVER Station</div>
-          <div>Lorem ipsum dolor sit amet · Lorem ipsum · Lorem ipsum</div>
+          <div>© <span id="year"></span> SOLVERSTATION</div>
+          <div>
+            <a href="/contact.html" style="color: rgba(0,0,255,0.92); border-bottom: 1px solid rgba(0,0,255,0.22); padding-bottom:2px;">Contact</a>
+            <span style="margin:0 10px; color: rgba(0,0,0,0.45);">·</span>
+            Zagreb, Croatia (EU)
+          </div>
         </div>
       </footer>
     </div>
   </main>
 
   <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     // Desktop dropdown behavior (click to open; click outside to close)
     const dropdownItems = [...document.querySelectorAll("[data-dd]")];
 
@@ -983,7 +1136,7 @@
 
       let index = 0;
       let timer = null;
-      const intervalMs = 5500;
+      const intervalMs = 6500;
 
       function render(i){
         index = (i + slides.length) % slides.length;
@@ -1033,4 +1186,3 @@
   </script>
 </body>
 </html>
-
