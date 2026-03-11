@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News — SolverStation</title>
+  <link rel="stylesheet" href="../../css/style.css"/>
+  <link rel="stylesheet" href="../../css/navbar.css"/>
+  <link rel="stylesheet" href="../../css/responsive.css"/>
+  <style>
+    body { padding-top: 70px; }
+    .news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+    .news-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition:box-shadow var(--transition),transform var(--transition); }
+    .news-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-4px); }
+    .news-card-img { background:var(--grey-light); height:180px; display:flex; align-items:center; justify-content:center; color:#bbb; font-size:0.82rem; }
+    .news-card-body { padding:24px; }
+    .news-card-body .tag { margin-bottom:12px; }
+    .news-card-body h4 { margin-bottom:8px; font-size:1rem; }
+    .news-card-body p { font-size:0.88rem; color:#666; margin-bottom:16px; }
+    .news-date { font-size:0.78rem; color:#999; }
+    @media(max-width:768px){ .news-grid{grid-template-columns:1fr;} }
+    @media(max-width:1024px) and (min-width:769px){ .news-grid{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="../../" data-en="Home" data-hr="Početna">Home</a> <span>/</span> <a href="#" data-en="Resources" data-hr="Resursi">Resources</a> <span>/</span> <span data-en="News" data-hr="Vijesti">News</span></p>
+        <h1 data-en="News" data-hr="Vijesti">News</h1>
+        <p data-en="Latest updates, announcements, and insights from SolverStation." data-hr="Najnovije vijesti, objave i uvidi od SolverStation-a.">Latest updates, announcements, and insights from SolverStation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-grid">
+
+          <div class="news-card">
+            <div class="news-card-img" data-en="[Article image]" data-hr="[Slika članka]">[Article image]</div>
+            <div class="news-card-body">
+              <span class="tag" data-en="Company" data-hr="Tvrtka">Company</span>
+              <h4 data-en="SolverStation Launches Official Website" data-hr="SolverStation lansira službenu web stranicu">SolverStation Launches Official Website</h4>
+              <p data-en="We are proud to announce the launch of the official SolverStation website, marking a new step in our digital presence." data-hr="Ponosni smo što možemo objaviti lansiranje službene web stranice SolverStation-a, što označava novi korak u našoj digitalnoj prisutnosti.">We are proud to announce the launch of the official SolverStation website, marking a new step in our digital presence.</p>
+              <span class="news-date">2026</span>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img" data-en="[Article image]" data-hr="[Slika članka]">[Article image]</div>
+            <div class="news-card-body">
+              <span class="tag" data-en="Partnership" data-hr="Partnerstvo">Partnership</span>
+              <h4 data-en="New Partnership with Atlantis Engineering" data-hr="Novo partnerstvo s Atlantis Engineeringom">New Partnership with Atlantis Engineering</h4>
+              <p data-en="SolverStation strengthens its engineering network through a new collaboration with Atlantis Engineering." data-hr="SolverStation jača svoju inženjersku mrežu kroz novu suradnju s Atlantis Engineeringom.">SolverStation strengthens its engineering network through a new collaboration with Atlantis Engineering.</p>
+              <span class="news-date">2026</span>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img" data-en="[Article image]" data-hr="[Slika članka]">[Article image]</div>
+            <div class="news-card-body">
+              <span class="tag" data-en="AI" data-hr="AI">AI</span>
+              <h4 data-en="AI Solutions Division Expands Service Offerings" data-hr="Odjel AI rješenja proširuje ponudu usluga">AI Solutions Division Expands Service Offerings</h4>
+              <p data-en="Our AI &amp; Prompt Engineering team introduces new automation and data management services for business clients." data-hr="Naš tim za AI i prompt inženjering uvodi nove usluge automatizacije i upravljanja podacima za poslovne klijente.">Our AI &amp; Prompt Engineering team introduces new automation and data management services for business clients.</p>
+              <span class="news-date">2026</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:48px;">
+          <p style="color:#999;font-size:0.9rem;" data-en="More news articles will be added as SolverStation grows." data-hr="Više vijesti bit će dodano kako SolverStation raste.">More news articles will be added as SolverStation grows.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../../js/components.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
