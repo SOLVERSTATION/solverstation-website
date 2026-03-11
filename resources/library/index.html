@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library — SolverStation</title>
+  <link rel="stylesheet" href="../../css/style.css"/>
+  <link rel="stylesheet" href="../../css/navbar.css"/>
+  <link rel="stylesheet" href="../../css/responsive.css"/>
+  <style>
+    body { padding-top: 70px; }
+    .lib-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .lib-card { background:var(--white); border-radius:var(--radius); padding:28px 24px; box-shadow:var(--shadow); border-top:3px solid var(--grey-dark); transition:box-shadow var(--transition),transform var(--transition); }
+    .lib-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-3px); }
+    .lib-card .doc-type { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#999; margin-bottom:12px; }
+    .lib-card h4 { margin-bottom:10px; font-size:0.98rem; }
+    .lib-card p { font-size:0.88rem; color:#666; margin-bottom:16px; }
+    .lib-card .download-link { font-size:0.85rem; font-weight:700; color:var(--blue); display:flex; align-items:center; gap:6px; }
+    .filter-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; }
+    .filter-btn { padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:600; border:1.5px solid #ddd; background:var(--white); cursor:pointer; transition:all var(--transition); font-family:var(--font); }
+    .filter-btn.active, .filter-btn:hover { border-color:var(--blue); color:var(--blue); background:rgba(0,0,255,0.05); }
+    @media(max-width:768px){ .lib-grid{grid-template-columns:1fr;} }
+    @media(max-width:1024px) and (min-width:769px){ .lib-grid{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="../../" data-en="Home" data-hr="Početna">Home</a> <span>/</span> <a href="#" data-en="Resources" data-hr="Resursi">Resources</a> <span>/</span> <span data-en="Library" data-hr="Knjižnica">Library</span></p>
+        <h1 data-en="Library" data-hr="Knjižnica">Library</h1>
+        <p data-en="Technical guides, white papers, and reference documents from SolverStation." data-hr="Tehnički vodiči, bijele knjige i referentni dokumenti od SolverStation-a.">Technical guides, white papers, and reference documents from SolverStation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-en="All" data-hr="Sve">All</button>
+          <button class="filter-btn" data-en="Engineering" data-hr="Inženjering">Engineering</button>
+          <button class="filter-btn" data-en="AI &amp; Digital" data-hr="AI i digitalno">AI &amp; Digital</button>
+          <button class="filter-btn" data-en="R&amp;D" data-hr="R&amp;D">R&amp;D</button>
+          <button class="filter-btn" data-en="Guides" data-hr="Vodiči">Guides</button>
+        </div>
+
+        <div class="lib-grid">
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="White Paper" data-hr="Bijela knjiga">White Paper</p>
+            <h4 data-en="AI in Industrial Engineering: Opportunities and Challenges" data-hr="AI u industrijskom inženjerstvu: Prilike i izazovi">AI in Industrial Engineering: Opportunities and Challenges</h4>
+            <p data-en="An overview of how artificial intelligence is transforming industrial and manufacturing engineering processes." data-hr="Pregled kako umjetna inteligencija transformira industrijske i proizvođačke inženjerske procese.">An overview of how artificial intelligence is transforming industrial and manufacturing engineering processes.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="Technical Guide" data-hr="Tehnički vodič">Technical Guide</p>
+            <h4 data-en="Introduction to Condition-Based Maintenance" data-hr="Uvod u održavanje temeljeno na stanju">Introduction to Condition-Based Maintenance</h4>
+            <p data-en="A practical guide to implementing CBM strategies in industrial settings, from sensor selection to data analysis." data-hr="Praktični vodič za implementaciju CBM strategija u industrijskim okruženjima, od odabira senzora do analize podataka.">A practical guide to implementing CBM strategies in industrial settings, from sensor selection to data analysis.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="Guide" data-hr="Vodič">Guide</p>
+            <h4 data-en="Navigating EU Horizon Europe Funding Calls" data-hr="Snalaženje u EU Horizon Europe pozivima za financiranje">Navigating EU Horizon Europe Funding Calls</h4>
+            <p data-en="Step-by-step guidance for SMEs and research institutions applying to Horizon Europe for the first time." data-hr="Vodič korak po korak za SME-ove i istraživačke institucije koje se prvi put prijavljuju na Horizon Europe.">Step-by-step guidance for SMEs and research institutions applying to Horizon Europe for the first time.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="Technical Note" data-hr="Tehnička bilješka">Technical Note</p>
+            <h4 data-en="Basics of Naval Architecture: Stability Principles" data-hr="Osnove brodogradnje: Principi stabilnosti">Basics of Naval Architecture: Stability Principles</h4>
+            <p data-en="A concise technical overview of static and dynamic stability in marine vessel design." data-hr="Sažet tehnički pregled statičke i dinamičke stabilnosti u dizajnu plovila.">A concise technical overview of static and dynamic stability in marine vessel design.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="White Paper" data-hr="Bijela knjiga">White Paper</p>
+            <h4 data-en="Digital Transformation for SMEs: Where to Start" data-hr="Digitalna transformacija za SME-ove: Gdje početi">Digital Transformation for SMEs: Where to Start</h4>
+            <p data-en="A practical framework for small and medium enterprises beginning their digital transformation journey." data-hr="Praktični okvir za mala i srednja poduzeća koja počinju svoj put digitalne transformacije.">A practical framework for small and medium enterprises beginning their digital transformation journey.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+          <div class="lib-card">
+            <p class="doc-type" data-en="Guide" data-hr="Vodič">Guide</p>
+            <h4 data-en="Effective Prompt Engineering for Business Use Cases" data-hr="Učinkovit prompt inženjering za poslovne slučajeve upotrebe">Effective Prompt Engineering for Business Use Cases</h4>
+            <p data-en="Practical techniques for crafting high-quality AI prompts to automate and enhance business workflows." data-hr="Praktične tehnike za izradu visokokvalitetnih AI promptova za automatizaciju i poboljšanje poslovnih tijekova rada.">Practical techniques for crafting high-quality AI prompts to automate and enhance business workflows.</p>
+            <span class="download-link" data-en="📄 Coming Soon" data-hr="📄 Uskoro dostupno">📄 Coming Soon</span>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:48px;">
+          <p style="color:#999;font-size:0.9rem;" data-en="Documents will be available for download as they are published." data-hr="Dokumenti će biti dostupni za preuzimanje čim budu objavljeni.">Documents will be available for download as they are published.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../../js/components.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
